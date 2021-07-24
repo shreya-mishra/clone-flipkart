@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, createTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -11,12 +11,17 @@ import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import { Container } from "@material-ui/core";
-import { Person, ShoppingCart } from "@material-ui/icons";
-import { Link, useHistory } from "react-router-dom";
+import { Button, Container } from "@material-ui/core";
+import { ShoppingCart } from "@material-ui/icons";
+import { useHistory } from "react-router-dom";
 import { NewContext } from "./Context";
+import { blue } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+
   grow: {
     flexGrow: 1,
   },
@@ -77,7 +82,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
+const theme = createTheme({
+  palette: {
+    primary: blue,
+  },
+});
 const Header = () => {
   const classes = useStyles();
   let history = useHistory();
@@ -130,12 +139,20 @@ const Header = () => {
       transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}>
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton aria-label='show 4 new mails' color='inherit'>
           <Person />
         </IconButton>
         <p>Shreya</p>
-      </MenuItem>
+      </MenuItem> */}
+      <Button
+        // onClick={() => setCart(cart.filter((c) => c.id !== cartProd.id))}
+        className={classes.margin}
+        variant='contained'
+        color='primary'
+        style={{ width: "70%" }}>
+        Login
+      </Button>
       <MenuItem>
         <IconButton aria-label='show 11 new notifications' color='inherit'>
           <KeyboardArrowDownIcon />
@@ -162,9 +179,9 @@ const Header = () => {
         <Container>
           <Toolbar>
             <Typography className={classes.title} variant='h6' noWrap>
-              <Link style={{ textDecoration: "none", color: "white" }} to='/'>
+              <a style={{ textDecoration: "none", color: "white" }} href='/'>
                 <i>FlipKart</i>
-              </Link>
+              </a>
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -181,12 +198,20 @@ const Header = () => {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton
+              {/* <IconButton
                 aria-label='show 17 new notifications'
                 color='inherit'>
                 <p>shreya</p>
                 <KeyboardArrowDownIcon />
-              </IconButton>
+              </IconButton> */}
+              <Button
+                // onClick={() => setCart(cart.filter((c) => c.id !== cartProd.id))}
+                className={classes.margin}
+                variant='contained'
+                color='primary'
+                style={{ width: "70%" }}>
+                Login
+              </Button>
               <IconButton
                 aria-label='show 17 new notifications'
                 color='inherit'>

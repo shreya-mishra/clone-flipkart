@@ -19,6 +19,7 @@ const theme = createTheme({
 const SingleProduct = () => {
   const { cart, setCart, categoryFilter } = useContext(NewContext);
   const classes = useStyles();
+
   return (
     <>
       {categoryFilter.map((prod) => {

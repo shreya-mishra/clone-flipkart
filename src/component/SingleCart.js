@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { createTheme, makeStyles, ThemeProvider } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import "../App.css";
@@ -19,9 +19,13 @@ const theme = createTheme({
 const SingleCart = () => {
   const { cart, setCart } = useContext(NewContext);
   const classes = useStyles();
-
+  const [price, setPrice] = useState(0);
+  useEffect(() => {
+    setPrice(cart.reduce((acc, curr) => acc + Number(curr.price), 0));
+  }, []);
   return (
     <>
+      <h1>You Total Amount is {price}</h1>
       {cart.map((cartProd) => {
         return (
           <div key={cartProd.id} className='single__product'>
